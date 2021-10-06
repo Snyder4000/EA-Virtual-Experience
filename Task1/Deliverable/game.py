@@ -534,7 +534,10 @@ def startGame():
 
       monsta_hit_list = pygame.sprite.spritecollide(Pacman, monsta_list, False)
 
-      #if monsta_hit_list:
+      if monsta_hit_list:
+        for mon in monsta_hit_list:
+            monsta_list.remove(mon)
+            mon.kill()
         #doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
 
       # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
