@@ -222,6 +222,12 @@ class Ghost(Player):
       except IndexError:
          return [0,0]
 
+def spawn(monsta_list, all_sprites_list):
+    Blinky=Ghost( w, b_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Blinky.png" )
+    monsta_list.add(Blinky)
+    all_sprites_list.add(Blinky)
+
+
 Pinky_directions = [
 [0,-30,4],
 [15,0,9],
@@ -358,6 +364,8 @@ background.fill(black)
 
 
 clock = pygame.time.Clock()
+pygame.time.set_timer(pygame.USEREVENT, 1000)
+
 
 pygame.font.init()
 font = pygame.font.Font("F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/freesansbold.ttf", 24)
@@ -383,6 +391,8 @@ def startGame():
   wall_list = setupRoomOne(all_sprites_list)
 
   gate = setupGate(all_sprites_list)
+
+  counter = 30
 
 
   p_turn = 0
@@ -454,7 +464,13 @@ def startGame():
   while done == False:
       # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
       for event in pygame.event.get():
-          # CHANGE - Add timer for doubling the ghosts                                           
+          # CHANGE - Add timer for doubling the ghosts
+          if event.type == pygame.USEREVENT:
+              counter -=1
+              if counter < 0:
+                  spawn(monsta_list, all_sprites_list)
+                  counter = 30
+
           if event.type == pygame.QUIT:
               done=True
 
@@ -532,6 +548,9 @@ def startGame():
       if score == bll:
         doNext("Congratulations, you won!",145,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
 
+      if len(monsta_list)> 128:
+          doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
+
       monsta_hit_list = pygame.sprite.spritecollide(Pacman, monsta_list, False)
 
       if monsta_hit_list:
@@ -565,10 +584,10 @@ def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,w
             startGame()
 
       #Grey background
-      w2 = pygame.Surface((400,200))  # the size of your rect
-      w2.set_alpha(10)                # alpha level
-      w2.fill((128,128,128))           # this fills the entire surface
-      screen.blit(w2, (100,200))    # (0,0) are the top-left coordinates
+      w = pygame.Surface((400,200))  # the size of your rect
+      w.set_alpha(10)                # alpha level
+      w.fill((128,128,128))           # this fills the entire surface
+      screen.blit(w, (100,200))    # (0,0) are the top-left coordinates
 
       #Won or lost
       text1=font.render(message, True, white)
