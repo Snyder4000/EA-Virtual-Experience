@@ -423,7 +423,7 @@ def startGame():
 
   gate = setupGate(all_sprites_list)
 
-  counter = 30
+  counter = 15
 
 
   p_turn = 0
@@ -503,8 +503,9 @@ def startGame():
           if event.type == pygame.USEREVENT:
               counter -=1
               if counter < 0:
-                  spawn(monsta_list, all_sprites_list, monsta_Blinky, monsta_Pinky, monsta_Inky, monsta_Clyde)
-                  counter = 5
+                  for x in range(len(monsta_list)):
+                    spawn(monsta_list, all_sprites_list, monsta_Blinky, monsta_Pinky, monsta_Inky, monsta_Clyde)
+                  counter = 15
 
           if event.type == pygame.QUIT:
               done=True
