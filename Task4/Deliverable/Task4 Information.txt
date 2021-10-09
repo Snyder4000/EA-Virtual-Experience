@@ -1,0 +1,16 @@
+Background Information on task:
+Video games and video gamers are sometimes targets of cyberattacks. Here are just a few examples of famous cyberattacks: 
+"Smash the Stack" - manipulation of the program by causing changes in random memory access, leading to stack buffer overflow.
+"Goto Fail Goto Fail" - a copy and paste error that leads to two consecutive Goto Fail statements, which meant that one of them was part of the if statement and the other was always executed. 
+"Heartbleed Bug" - Heartbleed was a security bug in the OpenSSL library that was traced to a single line of code.
+
+Actual Task:
+Your task is to review the information about several well-known cyberattacks and answer some questions.
+    Step 1:  Review the information included in the Resources (below).
+    Step 2:  Download the document of follow-up questions from the Resources section.
+    Step 3:  Fill out the answers to those questions and save the document.
+    Step 4:  Go to 'Submit your work' below and upload your document. This will be your deliverable for this task.
+
+Resources:
+https://nakedsecurity.sophos.com/2014/02/24/anatomy-of-a-goto-fail-apples-ssl-bug-explained-plus-an-unofficial-patch/
+https://www.csoonline.com/article/3223203/what-is-the-heartbleed-bug-how-does-it-work-and-how-was-it-fixed.html

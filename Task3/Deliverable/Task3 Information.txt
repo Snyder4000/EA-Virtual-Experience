@@ -1,0 +1,15 @@
+Background Information on task:
+There are several Game Development Engines that can be used to develop a game: Frostbite, Unreal, Unity, and others. 
+Frostbite Engine is the technology behind EA Games and is the core piece of EA's one-team strategy; through the sharing of 
+technology between studios we are creating a shared language for EA developers. Frostbite Engine is not open-source. We have included a video in the Resources section (below) that 
+teaches you more about Frostbite, however this video won't form part of the task.
+Given the proprietary nature of Frostbite, you will use an open-source engine for this task. Unreal Engine is a commonly used open-source engine and is a complete suite of development 
+tools for anyone working with real-time technology, from design visualizations and cinematic experiences to high-quality games across PC, console, mobile, VR, and AR.  
+
+Actual Task:
+In the previous tasks you have implemented Vax-Man in Python and C++. In this task, you need to think about how you would use Unreal Engine to implement Vax-Man.
+    Step 1:  Review the information included in the Resources (below).
+    Step 2:  Think through how you could implement Vax-Man using Unreal Engine, what steps you will need to take, and what issues you will need to address.
+    Step 3:  Go to 'Submit your work' below and input your answers into the text box. This will be your deliverable for this task.
+
+Resources:

@@ -1,0 +1,20 @@
+Background Information on task:
+Python is an excellent development language. But it has performance limits. When implementing more resource-intensive games, the industry standards are C++ and C#. The choice of language will depend on the platform you use. EA work is done on C++.
+ To recap, we are building a new game called Vax-Man. The rules are similar to Pac-Man with several notable exceptions:
+    Vax-Man can kill a ghost if he comes into contact with it (vaccinates it).
+    Contact with a ghost does not kill Vax-Man.
+    Each ghost that has not yet been hit multiplies itself every 30 seconds (the infection grows).
+    The goal of the game is to collect all the dots before the number of ghosts grows to 32 times the original number.
+
+Actual Task:
+In this task you need to do the following:
+    Step 1: Review open-source C++ Pac-Man implementations. We've included a couple of them for reference in the Resources below, but you can use any open-source C++ implementation.
+    Step 2: Pick one of the open-source implementations and download it.
+    Step 3: Modify it based on the rules of Vax-Man.
+    Step 4: Go to 'Submit your work' below and upload your modified code. This will be your deliverable for this task.
+
+Resources:
+    https://www.pacxon.net/pacman-rules.php
+    https://github.com/patriciateroltolsa/Pacman/blob/master/assign10.cpp
+    https://github.com/dzui42unit/pacman
+    
