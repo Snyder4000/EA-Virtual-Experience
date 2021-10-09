@@ -223,9 +223,11 @@ class Ghost(Player):
       except IndexError:
          return [0,0]
 
+# This is my function for spawning a new random ghost/virus
 def spawn(monsta_list, all_sprites_list, monsta_Blinky, monsta_Pinky, monsta_Inky, monsta_Clyde):
-    ghostType = random.randint(0, 3)
+    ghostType = random.randint(0, 3) # This is used to pick which type of ghost to spawn using the built in random function
 
+    # Each of these if statements spawns a different ghost using the same code that created the original ghosts and the ghostType var to select the type
     if ghostType == 0:
       Blinky=Ghost( w, b_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Blinky.png" )
       monsta_list.add(Blinky)
@@ -373,7 +375,7 @@ screen = pygame.display.set_mode([606, 606])
 
 
 # Set the title of the window
-pygame.display.set_caption('Pacman')
+pygame.display.set_caption('Vax-man')
 
 # Create a surface we can draw on
 background = pygame.Surface(screen.get_size())
@@ -409,13 +411,13 @@ def startGame():
 
   monsta_list = pygame.sprite.RenderPlain()
 
-  monsta_Blinky = pygame.sprite.RenderPlain()
+  monsta_Blinky = pygame.sprite.RenderPlain() #List of Blinky viruses/ghosts
 
-  monsta_Pinky = pygame.sprite.RenderPlain()
+  monsta_Pinky = pygame.sprite.RenderPlain() #List of Pinky viruses/ghosts
 
-  monsta_Inky = pygame.sprite.RenderPlain()
+  monsta_Inky = pygame.sprite.RenderPlain() #List of Inky viruses/ghosts
 
-  monsta_Clyde = pygame.sprite.RenderPlain()
+  monsta_Clyde = pygame.sprite.RenderPlain() #List of Clyde viruses/ghosts
 
   pacman_collide = pygame.sprite.RenderPlain()
 
@@ -464,7 +466,7 @@ def startGame():
   monsta_Clyde.add(Clyde)
   all_sprites_list.add(Clyde)
 
-# CHANGE - make lists for each type of ghost                             
+                            
   # Draw the grid
   for row in range(19):
       for column in range(19):
@@ -500,6 +502,7 @@ def startGame():
       # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
       for event in pygame.event.get():
           # CHANGE - Add timer for doubling the ghosts
+          # This block is controlling the added timer and calling the funtion that spawns a new ghost
           if event.type == pygame.USEREVENT:
               counter -=1
               if counter < 0:
@@ -536,6 +539,8 @@ def startGame():
       Pacman.update(wall_list,gate)
 
 # CHANGE - The code needs to run on multiple instances of each ghost
+# Took the original code for moving a each ghost and put that into loops that do
+# the same thing, but on each ghost in each list of the type of ghost
 
       for m in monsta_Pinky:
         returned = m.changespeed(Pinky_directions,False,p_turn,p_steps,pl)
@@ -642,7 +647,7 @@ def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,w
 
       clock.tick(10)
 
-# CHANGE - Add code to duplicate the ghosts
+# CHANGE - Add code to duplicate the ghosts, done this above in another spot.
 startGame()
 
 pygame.quit()
