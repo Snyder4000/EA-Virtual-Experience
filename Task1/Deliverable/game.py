@@ -3,6 +3,7 @@
 #https://github.com/hbokmann/Pacman
   
 import pygame
+import random
   
 black = (0,0,0)
 white = (255,255,255)
@@ -222,10 +223,32 @@ class Ghost(Player):
       except IndexError:
          return [0,0]
 
-def spawn(monsta_list, all_sprites_list):
-    Blinky=Ghost( w, b_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Blinky.png" )
-    monsta_list.add(Blinky)
-    all_sprites_list.add(Blinky)
+def spawn(monsta_list, all_sprites_list, monsta_Blinky, monsta_Pinky, monsta_Inky, monsta_Clyde):
+    ghostType = random.randint(0, 3)
+
+    if ghostType == 0:
+      Blinky=Ghost( w, b_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Blinky.png" )
+      monsta_list.add(Blinky)
+      monsta_Blinky.add(Blinky)
+      all_sprites_list.add(Blinky)
+
+    if ghostType == 1:
+      Pinky=Ghost( w, m_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Pinky.png" )
+      monsta_list.add(Pinky)
+      monsta_Pinky.add(Pinky)
+      all_sprites_list.add(Pinky)
+
+    if ghostType == 2:
+     Inky=Ghost( i_w, m_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Inky.png" )
+     monsta_list.add(Inky)
+     monsta_Inky.add(Inky)
+     all_sprites_list.add(Inky)
+
+    if ghostType == 3:
+      Clyde=Ghost( c_w, m_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Clyde.png" )
+      monsta_list.add(Clyde)
+      monsta_Clyde.add(Clyde)
+      all_sprites_list.add(Clyde)
 
 
 Pinky_directions = [
@@ -386,6 +409,14 @@ def startGame():
 
   monsta_list = pygame.sprite.RenderPlain()
 
+  monsta_Blinky = pygame.sprite.RenderPlain()
+
+  monsta_Pinky = pygame.sprite.RenderPlain()
+
+  monsta_Inky = pygame.sprite.RenderPlain()
+
+  monsta_Clyde = pygame.sprite.RenderPlain()
+
   pacman_collide = pygame.sprite.RenderPlain()
 
   wall_list = setupRoomOne(all_sprites_list)
@@ -415,18 +446,22 @@ def startGame():
    
   Blinky=Ghost( w, b_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Blinky.png" )
   monsta_list.add(Blinky)
+  monsta_Blinky.add(Blinky)
   all_sprites_list.add(Blinky)
 
   Pinky=Ghost( w, m_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Pinky.png" )
   monsta_list.add(Pinky)
+  monsta_Pinky.add(Pinky)
   all_sprites_list.add(Pinky)
    
   Inky=Ghost( i_w, m_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Inky.png" )
   monsta_list.add(Inky)
+  monsta_Inky.add(Inky)
   all_sprites_list.add(Inky)
    
   Clyde=Ghost( c_w, m_h, "F:/Repositories/EA-Virtual-Experience/Task1/Deliverable/images/Clyde.png" )
   monsta_list.add(Clyde)
+  monsta_Clyde.add(Clyde)
   all_sprites_list.add(Clyde)
 
 # CHANGE - make lists for each type of ghost                             
@@ -468,8 +503,8 @@ def startGame():
           if event.type == pygame.USEREVENT:
               counter -=1
               if counter < 0:
-                  spawn(monsta_list, all_sprites_list)
-                  counter = 30
+                  spawn(monsta_list, all_sprites_list, monsta_Blinky, monsta_Pinky, monsta_Inky, monsta_Clyde)
+                  counter = 5
 
           if event.type == pygame.QUIT:
               done=True
@@ -501,29 +536,33 @@ def startGame():
 
 # CHANGE - The code needs to run on multiple instances of each ghost
 
-      returned = Pinky.changespeed(Pinky_directions,False,p_turn,p_steps,pl)
-      p_turn = returned[0]
-      p_steps = returned[1]
-      Pinky.changespeed(Pinky_directions,False,p_turn,p_steps,pl)
-      Pinky.update(wall_list,False)
+      for m in monsta_Pinky:
+        returned = m.changespeed(Pinky_directions,False,p_turn,p_steps,pl)
+        p_turn = returned[0]
+        p_steps = returned[1]
+        m.changespeed(Pinky_directions,False,p_turn,p_steps,pl)
+        m.update(wall_list,False)
 
-      returned = Blinky.changespeed(Blinky_directions,False,b_turn,b_steps,bl)
-      b_turn = returned[0]
-      b_steps = returned[1]
-      Blinky.changespeed(Blinky_directions,False,b_turn,b_steps,bl)
-      Blinky.update(wall_list,False)
+      for m in monsta_Blinky:
+        returned = m.changespeed(Blinky_directions,False,b_turn,b_steps,bl)
+        b_turn = returned[0]
+        b_steps = returned[1]
+        m.changespeed(Blinky_directions,False,b_turn,b_steps,bl)
+        m.update(wall_list,False)
 
-      returned = Inky.changespeed(Inky_directions,False,i_turn,i_steps,il)
-      i_turn = returned[0]
-      i_steps = returned[1]
-      Inky.changespeed(Inky_directions,False,i_turn,i_steps,il)
-      Inky.update(wall_list,False)
+      for m in monsta_Inky:
+        returned = m.changespeed(Inky_directions,False,i_turn,i_steps,il)
+        i_turn = returned[0]
+        i_steps = returned[1]
+        m.changespeed(Inky_directions,False,i_turn,i_steps,il)
+        m.update(wall_list,False)
 
-      returned = Clyde.changespeed(Clyde_directions,"clyde",c_turn,c_steps,cl)
-      c_turn = returned[0]
-      c_steps = returned[1]
-      Clyde.changespeed(Clyde_directions,"clyde",c_turn,c_steps,cl)
-      Clyde.update(wall_list,False)
+      for m in monsta_Clyde:
+        returned = m.changespeed(Clyde_directions,"clyde",c_turn,c_steps,cl)
+        c_turn = returned[0]
+        c_steps = returned[1]
+        m.changespeed(Clyde_directions,"clyde",c_turn,c_steps,cl)
+        m.update(wall_list,False)
 
       # See if the Pacman block has collided with anything.
       blocks_hit_list = pygame.sprite.spritecollide(Pacman, block_list, True)
